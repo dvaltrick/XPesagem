@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XPesagem.View.DashboardPage"
+             Title="XPesagem"
+             BackgroundColor="#F2F1EF">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Novo"
+                     Command="{Binding novaMarcacao}"></ToolbarItem>
+    </ContentPage.ToolbarItems>
+    <StackLayout HorizontalOptions="Fill"
+                 VerticalOptions="Fill">
+        <StackLayout HorizontalOptions="Fill"
+                     VerticalOptions="Start"
+                     BackgroundColor="White"
+                     Padding="10,10,10,10">
+            <Label HorizontalOptions="Start"
+                   VerticalOptions="Start"
+                   Text="Peso Atual"
+                   FontSize="Large"
+                   TextColor="{StaticResource Amethyst}"></Label>
+            <Label HorizontalOptions="Start"
+                   VerticalOptions="Start"
+                   Text="91,5 Kg"
+                   FontSize="Medium"
+                   TextColor="{StaticResource PeterRiver}"></Label>
+        </StackLayout>
+        <ListView ItemsSource="{Binding listaDePesos}"
+                  HorizontalOptions="Fill"
+                  VerticalOptions="Start"
+                  IsPullToRefreshEnabled="True"
+                  RefreshCommand="{Binding atualizaLista}"
+                  BackgroundColor="White">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding Peso}"
+                              TextColor="{StaticResource Wisteria}"
+                              Detail="{Binding Data}"
+                              DetailColor="{StaticResource BelizeHole}"></TextCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <ActivityIndicator Color="{StaticResource Amethyst}"
+                           IsRunning="{Binding IsBusy}"
+                           HorizontalOptions="Fill"
+                           VerticalOptions="End"></ActivityIndicator>
+    </StackLayout>
+</ContentPage>

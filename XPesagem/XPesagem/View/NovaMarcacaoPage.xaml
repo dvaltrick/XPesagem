@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XPesagem.View.NovaMarcacaoPage"
+             Title="Nova Marcação"
+             BackgroundColor="White">
+    <StackLayout HorizontalOptions="Fill"
+                 VerticalOptions="Center">
+        <Label Text="Peso"
+               TextColor="{StaticResource Amethyst}"
+               HorizontalOptions="Fill"
+               VerticalOptions="Center"
+               HorizontalTextAlignment="Start"></Label>
+        <Entry HorizontalOptions="Fill"
+               VerticalOptions="Center"
+               TextColor="{StaticResource Amethyst}"
+               HorizontalTextAlignment="Start"
+               Text="{Binding peso}"
+               Keyboard="Numeric"></Entry>
+        <Label Text="Data"
+               TextColor="{StaticResource Amethyst}"
+               HorizontalOptions="Fill"
+               VerticalOptions="Center"
+               HorizontalTextAlignment="Start"></Label>
+        <DatePicker HorizontalOptions="Fill"
+                    VerticalOptions="Center"
+                    Date="{Binding data}"
+                    TextColor="{StaticResource Amethyst}"></DatePicker>
+        <Button HorizontalOptions="Fill"
+                VerticalOptions="End"
+                TextColor="White"
+                BackgroundColor="{StaticResource LightGreen}"
+                Command="{Binding salvarMarcacao}"
+                Text="Salvar"></Button>
+        <ActivityIndicator Color="{StaticResource Amethyst}"
+                           IsRunning="{Binding IsBusy}"
+                           HorizontalOptions="Fill"
+                           VerticalOptions="End"></ActivityIndicator>
+
+
+    </StackLayout>
+</ContentPage>

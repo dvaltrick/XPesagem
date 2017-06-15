@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:XPesagem"
+             x:Class="XPesagem.MainPage"
+             Title="XPesagem">
+    <StackLayout HorizontalOptions="Fill"
+                 VerticalOptions="Center"
+                 Padding="10,10,10,10">
+        <Label Text="Efetue Login com o Facebook"
+               TextColor="#9B59B6"
+               HorizontalTextAlignment="Center"
+               HorizontalOptions="Fill"
+               VerticalOptions="Center"></Label>
+        <Button Text="Facebook Login"
+                BackgroundColor="#9B59B6"
+                TextColor="White"
+                HorizontalOptions="Fill"
+                VerticalOptions="Center"
+                Command="{Binding commandLogin}"></Button>
+
+    </StackLayout>
+</ContentPage>
