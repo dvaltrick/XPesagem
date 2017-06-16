@@ -50,7 +50,7 @@ namespace XPesagem.Service
         public async Task<IEnumerable> GetReg()
         {
             await SyncAsync();
-            return await table.OrderBy(c => c.Data).ToEnumerableAsync();
+            return await table.OrderByDescending(c => c.Data).ToEnumerableAsync();
         }
 
         public async Task AddReg(Marcacao marcacao)

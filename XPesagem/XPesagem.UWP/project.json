@@ -4,6 +4,7 @@
     "Microsoft.Azure.Mobile.Client.SQLiteStore": "3.1.0",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.2.2",
     "Newtonsoft.Json": "10.0.2",
+    "OxyPlot.Xamarin.Forms": "1.0.0",
     "SQLite.Net-PCL": "3.1.1",
     "Xamarin.Forms": "2.3.4.224"
   },

@@ -23,7 +23,9 @@ namespace XPesagem.UWP
         public MainPage()
         {
             this.InitializeComponent();
-            
+
+            OxyPlot.Xamarin.Forms.Platform.UWP.PlotViewRenderer.Init();
+
             LoadApplication(new XPesagem.App());
 
         }

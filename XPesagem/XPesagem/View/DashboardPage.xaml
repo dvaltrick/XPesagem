@@ -21,9 +21,13 @@
                    TextColor="{StaticResource Amethyst}"></Label>
             <Label HorizontalOptions="Start"
                    VerticalOptions="Start"
-                   Text="91,5 Kg"
+                   Text="{Binding ultimoPesoRegistrado}"
                    FontSize="Medium"
                    TextColor="{StaticResource PeterRiver}"></Label>
+            <Button Text="Evolução" 
+                    Command="{Binding verGrafico}"
+                    BackgroundColor="{StaticResource PeterRiver}"
+                    TextColor="White"></Button>
         </StackLayout>
         <ListView ItemsSource="{Binding listaDePesos}"
                   HorizontalOptions="Fill"

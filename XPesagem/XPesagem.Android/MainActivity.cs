@@ -18,10 +18,11 @@ namespace XPesagem.Droid
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(bundle);
-
+            
             global::Xamarin.Forms.Forms.Init(this, bundle);
 
             Microsoft.WindowsAzure.MobileServices.CurrentPlatform.Init();
+            OxyPlot.Xamarin.Forms.Platform.Android.PlotViewRenderer.Init();
 
             LoadApplication(new App());
 

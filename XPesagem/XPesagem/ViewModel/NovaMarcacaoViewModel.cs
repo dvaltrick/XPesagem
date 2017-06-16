@@ -53,7 +53,6 @@ namespace XPesagem.ViewModel
         public FacebookUser fb;
 
 
-
         public NovaMarcacaoViewModel() {
             this.IsBusy = false;
             this.salvarMarcacao = new Command(executaSalvarMarcacao);
