@@ -18,6 +18,13 @@
                 HorizontalOptions="Fill"
                 VerticalOptions="Center"
                 Command="{Binding commandLogin}"></Button>
+        <Button Text="Modo Offline"
+                BorderColor="#9B59B6"
+                BackgroundColor="White"
+                TextColor="#9B59B6"
+                HorizontalOptions="Fill"
+                VerticalOptions="Center"
+                Command="{Binding commandOff}"></Button>
 
     </StackLayout>
 </ContentPage>

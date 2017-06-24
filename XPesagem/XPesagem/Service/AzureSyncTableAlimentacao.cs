@@ -13,57 +13,47 @@ using Xamarin.Forms;
 using XPesagem.Model;
 using XPesagem.Service;
 
-[assembly: Dependency(typeof(AzureSyncTable))]
+[assembly: Dependency(typeof(AzureSyncTableAlimentacao))]
 namespace XPesagem.Service
 {
-    public partial class AzureSyncTable
+    public partial class AzureSyncTableAlimentacao
     {
         static AzureSyncTable defaultInstance = new AzureSyncTable();
 
         IMobileServiceClient client;
-        IMobileServiceSyncTable<Marcacao> table;
-        
-        public AzureSyncTable() {
-            this.client = new MobileServiceClient("https://xpesagem.azurewebsites.net");
-            var store = new MobileServiceSQLiteStore("xpesagemdata.db");
-            store.DefineTable<Marcacao>();
-            //store.DefineTable<Alimentacao>();
-            this.client.SyncContext.InitializeAsync(store);
-            this.table = client.GetSyncTable<Marcacao>();
-            //this.tableAlimentacao = client.GetSyncTable<Alimentacao>();
-        }
+        IMobileServiceSyncTable<Alimentacao> table;
 
-
-        public async Task Intialize()
+        public AzureSyncTableAlimentacao()
         {
-            //Create our client
-            client = new MobileServiceClient("https://xpesagem.azurewebsites.net");
-
-            const string path = "xpesagemdata.db";
-            //setup our local sqlite store and intialize our table
-            var store = new MobileServiceSQLiteStore(path);
-            store.DefineTable<Marcacao>();
-            await client.SyncContext.InitializeAsync(store, new MobileServiceSyncHandler());
-
-            //Get our sync table that will call out to azure
-            table = client.GetSyncTable<Marcacao>();
+            this.client = new MobileServiceClient("https://xpesagem.azurewebsites.net");
+            var store = new MobileServiceSQLiteStore("xpesagemdieta.db");
+            store.DefineTable<Alimentacao>();
+            this.client.SyncContext.InitializeAsync(store);
+            this.table = client.GetSyncTable<Alimentacao>();
         }
 
         public async Task<IEnumerable> GetReg()
         {
             await SyncAsync();
-            return await table.OrderByDescending(c => c.Data).ToEnumerableAsync();
+            return await table.OrderBy(c => c.Data).ToEnumerableAsync();
         }
 
-        public async Task AddReg(Marcacao marcacao)
+        public async Task<IEnumerable> GetReg(DateTime dataFiltro)
         {
-            await table.InsertAsync(marcacao);
+            await SyncAsync();
+            return await table.Where(c => (c.Data.Day == dataFiltro.Day)).OrderBy(c => c.Data).ToEnumerableAsync();
+        }
+
+        public async Task AddReg(Alimentacao dieta)
+        {
+            await table.InsertAsync(dieta);
 
             //Synchronize coffee
             await SyncAsync();
         }
 
-        public async Task SyncAsync() {
+        public async Task SyncAsync()
+        {
             ReadOnlyCollection<MobileServiceTableOperationError> syncErrors = null;
 
             try
@@ -72,7 +62,7 @@ namespace XPesagem.Service
 
                 // The first parameter is a query name that is used internally by the client SDK to implement incremental sync.
                 // Use a different query name for each unique query in your program.
-                await this.table.PullAsync("todasMarcacoes", this.table.CreateQuery());
+                await this.table.PullAsync("todaDieta", this.table.CreateQuery());
             }
             catch (MobileServicePushFailedException exc)
             {
@@ -103,6 +93,5 @@ namespace XPesagem.Service
 
         }
 
-     
     }
 }

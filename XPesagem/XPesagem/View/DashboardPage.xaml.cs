@@ -34,6 +34,14 @@ namespace XPesagem.View
                 base.Appearing += (object sender, EventArgs e) => lifecycleHandler.OnAppearing();
             }
         }
+
+        private void ListView_OnItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            if (e.SelectedItem != null)
+            {
+                vm.ExecutaAbreDetalhe(e.SelectedItem);
+            }
+        }
     }
 
 }

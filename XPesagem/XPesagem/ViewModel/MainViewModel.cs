@@ -14,9 +14,11 @@ namespace XPesagem.ViewModel
     {
         readonly AzureSocialLogin azureLogin = new AzureSocialLogin();
         public ICommand commandLogin { get; }
+        public ICommand commandOff { get;  }
 
         public MainViewModel() {
             this.commandLogin = new Command(LoginFacebook);
+            this.commandOff = new Command(carregaModelo);
         }
 
         public async void LoginFacebook() {
